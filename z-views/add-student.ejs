@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/my-style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    function callChangeLabel(e) {
+      document.getElementById('change-label').innerHTML = e.value;
+    }
+    function calculateAgeAndSubmit() {
+      var dob = new Date(document.getElementById('Date').value);
+      //calculate month difference from current date in time  
+      var month_diff = Date.now() - dob.getTime();
+      //convert the calculated difference in date format  
+      var age_dt = new Date(month_diff);
+      //extract year from date      
+      var year = age_dt.getUTCFullYear();
+      //now calculate the age of the user  
+      var age = Math.abs(year - 1970);
+      //display the calculated age  
+      document.getElementById('age').value=age;
+      document.forms.student.submit();
+      return;
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Registeration Form Student</div>
+    <div class="content">
+      <form action="/student/add-stdt" method="POST" id="student">
+        <div class="user-details">
+          <!-- 'ACTIVE',       'PREVIOUS_EXPERIENCE',       'INTERVIEWS' -->
+
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input type="text" name="NAME" placeholder="Enter your name" />
+          </div>
+
+          <div class="gender-details">
+            <span class="details">Gender</span>
+
+            <input type="radio" name="GENDER" value="M" /> Male
+            <input type="radio" name="GENDER" value="F" /> Female
+            <input type="radio" name="GENDER" value="G" /> Prefer Not to Say
+          </div>
+
+          <div class="input-box">
+            <span class="details">Date of Birth</span>
+            <input type="date" placeholder="" id="Date" name="DOB" />
+            <input type="hidden" name="AGE" id="age">
+          </div>
+
+          <div class="input-box">
+            <span class="details">Email Id</span>
+            <input type="email" placeholder="Enter your Email Id" name="EMAIL" />
+          </div>
+
+          <div class="input-box">
+            <span class="details">Mobile Number</span>
+            <input type="text" placeholder="Enter your Number" name="MOBILE" maxlength="10" />
+          </div>
+
+          <div class="input-box">
+            <span class="details">NIN Type</span>
+            <select name="NIN_TYPE" id="NIN_TYPE" onchange="callChangeLabel(this);">
+              <option value=""></option>
+              <option value="Aadhar">Aadhar</option>
+              <option value="Voter ID">Voter ID</option>
+              <option value="PAN">PAN</option>
+              <option value="Driving License">Driving License</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-box">
+            <span class="details" id="change-label"></span>
+            <input type="text" placeholder="Enter Detail" name="NIN_NUMBER" maxlength="16" />
+          </div>
+
+          <div class="input-box"></div>
+          <div class="input-box">
+            <span class="details">Father's Name</span>
+            <input type="text" placeholder="Enter Father's Name" name="FATHER_NAME" />
+          </div>
+          <div class="input-box">
+            <span class="details">Mother's Name</span>
+            <input type="text" placeholder="Enter Mother's Name" name="MOTHER_NAME" />
+          </div>
+
+          <div class="input-box2">
+            <span class="details">Course Enrolling To :</span>
+            <input type="text" placeholder="Enter Course Enrolling To" name="COURSE" />
+          </div>
+
+          <div class="input-box">
+            <span class="details">Batch</span>
+            <input type="text" placeholder="Enter Batch" name="BATCH" />
+          </div>
+
+          <div class="input-box">
+            <span class="details">Admission Date</span>
+            <input type="date" placeholder="Enter Admission Date" name="ADMISSION_DATE" maxlength="10" />
+          </div>
+
+          <div class="input-box">
+            <span class="details">College</span>
+            <input type="text" placeholder="Enter College" name="COLLEGE" />
+          </div>
+
+          <div class="input-box">
+            <span class="details">Gradutaing In </span>
+            <input type="text" placeholder="Gradutaion Completed on" name="YEAR" />
+          </div>
+
+          <div class="input-box2">
+            <br>
+            Remark
+          </div>
+          <div class="input-box2">
+            <span class="details"></span>
+            <input type="text" placeholder="Enter Remark (optional)" name="REMARK">
+          </div>
+
+        </div>
+        <div class="button">
+          <input type="button" value="Register" onclick="calculateAgeAndSubmit(this);"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

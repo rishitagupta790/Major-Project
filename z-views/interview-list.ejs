@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Interview List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='/font.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/table-style.css">
+    <script src="/jquery.js"></script>
+    <script src="/bootstrap.min.js"></script>
+    <script>
+        function changeLoc(flag){
+            if(flag ==1)
+                location.href='/interview/show-add-interview';
+            else if(flag==2)
+                location.href='/excel/render-exceldownloader';
+            else
+            location.href='/student/see-details'
+        }
+    </script>
+
+</head>
+
+<body>
+    <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="changeLoc(1);">Click here to add new interview</button>
+    <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="changeLoc(2);">Click here to Download Report</button>
+    <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="changeLoc(3);">Click here to See Student</button>
+    <section class="ftco-section" style="padding: 4em 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section">Interviews List</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrap">
+                        <table class="table table-responsive-xl">
+                            <thead>
+                                <tr>
+                                    <th>COMPANY</th>
+                                    <th>INTERVIEW Details</th>
+                                    <th>INTERVIEWER</th>
+                                    <th>INTERVIEW TOPICS</th>
+                                    <th>dd</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Repeating code -->
+                                <%for(let x of data){%>
+                                    <tr class="alert" role="alert">
+                                        <td>
+                                            <div class="pl-3 email">
+                                                <span>'<%=x.COMPANY%>'</span>
+                                            </div>
+                                        </td>
+                                        <td class="d-flex align-items-center">
+                                            <div class="pl-3 email">
+                                                <span><%=x.INTERVIEW_NAME%></span>
+                                                <span><%=x.INTERVIEW_DATE%></span>
+                                                <span><%=x.INTERVIEW_TIME%></span>
+                                            </div>
+                                        </td>
+                                        <td><%=x.INTERVIEWER%></td>
+                                        <td class="status"><span class="active"><%=x.INTERVIEW_TOPICS%></span></td>
+                                        <td>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <%}%>
+                                <!-- Repeating code -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
